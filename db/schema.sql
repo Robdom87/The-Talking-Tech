@@ -1,0 +1,6 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS tech_talk_db;
+
+-- CREATE DATABASE
+CREATE DATABASE tech_talk_db;
+
