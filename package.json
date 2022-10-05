@@ -1,5 +1,5 @@
 {
-  "name": "module-13-challenge-orm",
+  "name": "the_talking_tech",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,18 +11,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@work.github.com:coding-boot-camp/module-13-challenge-orm.git"
+    "url": "git@github.com:Robdom87/the_talking_tech.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.1.2"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.7"
+    "sequelize": "^6.3.5",
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1"
   }
 }
