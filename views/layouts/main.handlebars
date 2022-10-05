@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Talking Tech</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>The Talking Tech</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            {{#if logged_in}}
+            <a href="/login">Login</a>
+            {{else}}
+            <a href="/logout">LogOut</a>
+            {{/if}}
+        </nav>
+    </header>
+    <main class="container container-fluid mt-5">
+        {{{ body }}}
+    </main>
+    <footer>
+
+    </footer>
+    {{!-- conditional because its the same button? --}}
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>
