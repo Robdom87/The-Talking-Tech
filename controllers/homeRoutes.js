@@ -1,38 +1,59 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const { Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+//exclude id's if not needed
 router.get('/', async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      attributes: { exclude: ['created_at']},
-      include: { 
-        model: User , 
-        attributes: { exclude: ['password']}
+    const allPostsData = await Post.findAll({
+      order: [['updatedAt', 'DESC']],
+      attributes: { exclude: ['createdAt'] },
+      //can include multiple tables at the same level in the same include
+      include: [{
+        model: User,
+        attributes: { exclude: ['password'] }
       },
-      order: [['updated_at', 'ASC']]
+      {
+        model: Comment,
+        order: [['updatedAt', 'DESC']],
+        attributes: { exclude: ['createdAt'] },
+        //can nest includes as well
+        include: {
+          model: User,
+          attributes: { exclude: ['password'] }
+        }}]
     });
 
+    // res.status(200).json(allPostsData);
     //make sure only pull simple info 
-    const post = postData.map((posts) => posts.get({ plain: true }));
+    //got rid of map in the breakout room, because its only ?
+    // multiple objects so have to map
+    const posts = allPostsData.map((post) => post.get({ plain: true }));
+    // const posts = allPostsData.get({ plain: true });
 
-    //render handlebars
+
+    // //render handlebars
     res.render('homepage', {
-        //what does this do?
-      users,
-      logged_in: req.session.logged_in,
+      posts //spread operator used to send each one of the propertities
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    const dashboardData = await User.findAll({
+      attributes: { exclude: ['created_at'] },
+      where: {
+        user_id: req.session.user_id //how to pull
+      },
+      include: {
+        model: User,
+        attributes: { exclude: ['password'] }
+      },
+      order: [['updated_at', 'ASC']]
     });
 
     //make sure only pull simple info 
@@ -40,7 +61,7 @@ router.get('/', withAuth, async (req, res) => {
 
     //render handlebars
     res.render('homepage', {
-        //what does this do?
+      //what does this do?
       users,
       logged_in: req.session.logged_in,
     });
@@ -50,7 +71,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    //if user already logged in send him to the homepage
+  //if user already logged in send him to the homepage
   if (req.session.logged_in) {
     res.redirect('/');
     return;
