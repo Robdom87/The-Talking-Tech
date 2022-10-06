@@ -20,7 +20,9 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
+    db: sequelize,
+    checkExpirationInterval: 1000 * 60 * 10, // will check every 10 minutes
+    expiration: 1000 * 60 * 30 // will expire after 30 minutes
   })
 };
 
@@ -39,7 +41,7 @@ app.use(routes);
 // sync sequelize models to the database, then turn on the server
 //if force true, will drop everything
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-      console.log(`App listening on http://localhost:${PORT}/`);
-    });
+  app.listen(PORT, () => {
+    console.log(`App listening on http://localhost:${PORT}/`);
   });
+});
