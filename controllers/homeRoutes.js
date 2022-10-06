@@ -1,6 +1,32 @@
 const router = require('express').Router();
 const { User } = require('../models');
+const { Post } = require('../models');
 const withAuth = require('../utils/auth');
+
+router.get('/', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      attributes: { exclude: ['created_at']},
+      include: { 
+        model: User , 
+        attributes: { exclude: ['password']}
+      },
+      order: [['updated_at', 'ASC']]
+    });
+
+    //make sure only pull simple info 
+    const post = postData.map((posts) => posts.get({ plain: true }));
+
+    //render handlebars
+    res.render('homepage', {
+        //what does this do?
+      users,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/', withAuth, async (req, res) => {
   try {
