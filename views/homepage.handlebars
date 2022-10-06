@@ -8,5 +8,15 @@
     <p>{{post.content}}</p>
   </div>
   {{!-- attach a partial for comments --}}
+  {{#each post.comments as |comment|}}
+  <div>
+    <p>{{comment.comment}}</p>
+    <p>{{comment.user.username}}<span>{{comment.updatedAt}}</span></p>
+  </div>
+  {{/each}}
 </div>
 {{/each}}
+
+{{#if logged_in}}
+<script src="/js/homepage.js"></script>
+{{/if}}
