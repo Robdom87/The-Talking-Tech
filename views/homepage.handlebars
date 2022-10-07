@@ -1,13 +1,23 @@
 {{#each posts as |post| }}
+{{!-- //post box must encompass the hidden comments section --}}
 <div class="row align-center mb-5 postBox">
-  <div class="col-md-6">
-    <h2>{{post.title}}</h2>
-    <span>Posted by {{post.user.username}} on {{format_date post.updatedAt}}</span>
+  <div>
+    <div class="col-md-6">
+      <h2>{{post.title}}</h2>
+      <span>Posted by {{post.user.username}} on {{format_date post.updatedAt}}</span>
+    </div>
+    <div class="col-md-6">
+      <p>{{post.content}}</p>
+    </div>
   </div>
-  <div class="col-md-6">
-    <p>{{post.content}}</p>
-  </div>
-  {{!-- attach a partial for comments --}}
+
+  {{!-- hidden comment section --}}
+  <form class="commentbox hidden" >
+    <input type="text">
+    <button data-postid="{{post.id}}" type="submit">Comment</button>
+  </form>
+
+
   {{#each post.comments as |comment|}}
   <div>
     <p>{{comment.comment}}</p>
@@ -20,3 +30,4 @@
 {{#if logged_in}}
 <script src="/js/homepage.js"></script>
 {{/if}}
+
