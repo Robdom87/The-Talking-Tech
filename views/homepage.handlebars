@@ -1,27 +1,27 @@
 {{#each posts as |post| }}
 {{!-- //post box must encompass the hidden comments section --}}
-<div class="row align-center mb-5 postBox">
+<div class="postBox">
   <div>
-    <div class="col-md-6">
+    <div class="titleStyle col-12">
       <h2>{{post.title}}</h2>
       <span>Posted by {{post.user.username}} on {{format_date post.updatedAt}}</span>
     </div>
-    <div class="col-md-6">
+    <div class="contentStyle col-12">
       <p>{{post.content}}</p>
     </div>
   </div>
 
   {{!-- hidden comment section --}}
-  <form class="commentbox hidden" >
-    <input type="text">
-    <button data-postid="{{post.id}}" type="submit">Comment</button>
+  <form class="commentbox hidden col-12" >
+    <input class='inputBox' type="text" placeholder="comment">
+    <button class='addComment' data-postid="{{post.id}}" type="submit">Comment</button>
   </form>
 
 
   {{#each post.comments as |comment|}}
-  <div>
-    <p>{{comment.comment}}</p>
-    <p>{{comment.user.username}}<span>{{format_date comment.updatedAt}}</span></p>
+  <div class='commentStyle col-12'>
+    <p class="commentText">{{comment.comment}}</p>
+    <p class="commentDate">Commented by {{comment.user.username}} on <span>{{format_date comment.updatedAt}}</span></p>
   </div>
   {{/each}}
 </div>

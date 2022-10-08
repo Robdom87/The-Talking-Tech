@@ -1,9 +1,101 @@
-* {
+/* * {
     border: 1px solid red;
-}
+} */
 
+/* hidden functionality */
 .hidden {
     display: none;
 }
 
+p {
+    margin: 0px;
+}
 
+header {
+    background-color: cadetblue;
+    padding-bottom: 10px;
+}
+
+header * {
+    color: white;
+    text-align: center;
+}
+
+header nav * {
+    margin: 15px;
+}
+
+.postBox {
+    margin-bottom: 30px;
+}
+
+.titleStyle {
+    border: rgb(137, 137, 137) 2px solid;
+    background-color: lightgray;
+    padding: 5px 15px;
+}
+
+.titleStyle span {
+    font-size: 13px;
+}
+
+.contentStyle {
+    border: rgb(137, 137, 137) 2px solid;
+    padding: 5px 15px;
+    background-color: rgb(238, 238, 238);
+}
+
+.contentStyle p {
+    font-size: 22px;
+}
+
+.commentStyle {
+    border: rgb(137, 137, 137) 2px solid;
+    padding: 5px 15px;
+}
+
+.commentText {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.commentDate {
+    font-size: 11px;
+}
+
+.inputBox {
+    width: 100%;
+}
+
+button {
+    border: 2px lightgrey solid;
+}
+
+.commentboxStyle {
+    display: flex;
+    justify-content: center;
+}
+
+.optionsbox {
+    text-align: center;
+    border-right: rgb(137, 137, 137) 2px solid;
+    border-left: rgb(137, 137, 137) 2px solid;
+}
+
+.addBtnSection {
+    text-align: center;
+}
+
+h5 {
+    font-weight: 400;
+}
+
+#loginForm {
+    margin-bottom: 20px
+}
+
+.logInSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

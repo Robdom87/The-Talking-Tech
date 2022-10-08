@@ -4,6 +4,7 @@ postBoxes.forEach(postBox => {
     postBox.addEventListener('click', function () {
         let comment = this.querySelector('.commentbox');
         comment.classList.remove("hidden");
+        comment.classList.add("commentboxStyle");
     });
 });
 
