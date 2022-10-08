@@ -1,0 +1,51 @@
+{{!-- create new options modal --}}
+<div class="card hidden">
+    <form class="card-body" data-type="add">
+        <h5 class="card-title">Add or Update Post</h5>
+        <div>
+            <h2>Title:</h2>
+            <input class='changeTitle' type="text">
+        </div>
+        <div>
+            <p>Content:</p>
+            <input class='changeContent' type="text">
+        </div>
+        <button type="button" class="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<button class="addBtn">Add Post</button>
+<div class="postsSection">
+    {{#each posts as |post| }}
+    {{!-- //post box must encompass the hidden comments section --}}
+    <div class="row align-center mb-5 postBox">
+        <div>
+            <div class="col-md-6">
+                <h2 class='title' data-postid="{{post.id}}">{{post.title}}</h2>
+                <span>Posted by {{post.user.username}} on {{format_date post.updatedAt}}</span>
+            </div>
+            <div class="col-md-6">
+                <p class='content' data-postid="{{post.id}}">{{post.content}}</p>
+            </div>
+        </div>
+
+
+        {{!-- hidden options section --}}
+        <div class="optionsbox hidden">
+            <button class='updateBtn' data-postid="{{post.id}}">Update</button>
+            <button class='deleteBtn' data-postid="{{post.id}}">Delete</button>
+        </div>
+
+        {{#each post.comments as |comment|}}
+        <div>
+            <p>{{comment.comment}}</p>
+            <p>{{comment.user.username}}<span>{{format_date comment.updatedAt}}</span></p>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
+
+{{#if logged_in}}
+<script src="/js/dashboard.js"></script>
+{{/if}}

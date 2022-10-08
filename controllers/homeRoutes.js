@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const dashboardData = await User.findAll({
+    const dashboardData = await Post.findAll({
       order: [['updatedAt', 'DESC']],
       attributes: { exclude: ['createdAt'] },
       where: {
@@ -78,7 +78,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 });
 
