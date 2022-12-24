@@ -11,7 +11,7 @@ The Talking Tech is a forum available to any and all programmers to discuss any 
 
 ## Installation
 
-Hold My Code does not require installation, but can be installed to be used offline.
+The Talking Tech does not require installation.
 
 Technologies Used:
 - Node.js
