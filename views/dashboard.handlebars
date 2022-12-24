@@ -11,7 +11,7 @@
             <input class='inputBox changeContent' type="text">
         </div>
         <button type="button" class="cancelBtn">Cancel</button>
-        <button type="submit" >Submit</button>
+        <button type="submit">Submit</button>
     </form>
 </div>
 <div class="addBtnSection">
@@ -23,11 +23,11 @@
     <div class="postBox">
         <div>
             <div class="titleStyle col-12">
-                <h2 class='title' data-postid="{{post.id}}">{{post.title}}</h2>
+                <h6 class='title' data-postid="{{post.id}}">{{post.title}}</h6>
                 <span>Posted by {{post.user.username}} on {{format_date post.updatedAt}}</span>
             </div>
             <div class="contentStyle col-12">
-                <p class='content' data-postid="{{post.id}}">{{post.content}}</p>
+                <h2 class='content' data-postid="{{post.id}}">{{post.content}}</h2>
             </div>
         </div>
 

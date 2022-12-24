@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to log in');
+      alert('Failed to log in. Make sure your password is atleast 8 characters in length.');
     }
   }
 };
@@ -50,10 +50,29 @@ const registerFormHandler = async (event) => {
   }
 };
 
+let loginForm = document.querySelector('#loginForm');
+let registerForm = document.querySelector('#registerForm');
+
+function showRegister(){
+  loginForm.style.display='none';
+  registerForm.style.display='block';
+}
+
+function showLogin(){
+  loginForm.style.display='block';
+  registerForm.style.display='none';
+}
+
 document
-  .querySelector('#loginForm')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('.loginToggle')
+  .addEventListener('click', showLogin);
 
   document
-  .querySelector('#registerForm')
-  .addEventListener('submit', registerFormHandler);
+  .querySelector('.registerToggle')
+  .addEventListener('click', showRegister);
+
+
+loginForm.addEventListener('submit', loginFormHandler);
+
+
+registerForm.addEventListener('submit', registerFormHandler);
